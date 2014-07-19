@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title xml:id="chp-architecture">软件架构</title>
+    
+    <sect1>
+        <title>概述</title>
+        <para>Log Monitor的整体架构如下；</para>
+        <para><inlinemediaobject>
+                <imageobject>
+                    <imagedata fileref="images/architecture.png"/>
+                </imageobject>
+            </inlinemediaobject></para>
+        
+        <sect2>
+            <title>客户机</title>
+            <para>客户机上部署Agent，以Windows Service方式运行，通过多个线程监视日志文件，并增量将日志内容发送给Server。</para>
+            <para>可以对日志内容设置过滤，典型的按照正则表达式方式对日志行文本进行过滤，并且对日志文件进行分割，因为像Java堆栈等是换行的。</para>
+            <para>客户机会通过心跳线程向服务器发送ping信息，服务器可以根据此来感知客户机的运行情况。</para>
+            <para>客户机和服务器之间通过高效的Netty（TCP）协议进行传输。</para>
+        </sect2>
+        
+        <sect2>
+            <title>日志服务器</title>
+            <para>Server部署在多个日志服务器上，以Windows Service方式运行。一个Server可以处理Agent发送的请求。</para>
+            <para>Server通过流水线（Pipeline）对日志进行分析处理，每个处理器（Handler）完成一项任务。处理器是完全可定制的。</para>
+            <para>典型的日志处理经过切分、过滤、存储、统计等一系列过程。</para>
+            <sect3>
+                <title>切分</title>
+                <para>将原始的日志文本（RawLog）按照特定的分割符切分，比如Log4j格式或者HTTP Access log格式等。</para>
+                <para>有些信息需要通过二次切分获得，例如性能日志，将切分后的日志（TokenLog）进行二次切分得到性能日志格式（PerfLog）。</para>
+            </sect3>
+            
+            <sect3>
+                <title>统计</title>
+                <para>对切分的日志可以进行统计，例如对基于方法的性能日志可以进行汇总得到每个方法的调用次数、最大耗时、平均耗时等。</para>
+            </sect3>
+            
+            <sect3>
+                <title>存储</title>
+                <para>处理的日志可以存储到文本文件，或者数据库中以做进一步分析。</para>
+            </sect3>
+            
+            <sect3>
+                <title>监控</title>
+                <para>对于特定的日志可以发送监控平台，进行统一监控和报警处理。</para>
+            </sect3>
+        </sect2>
+    </sect1>
+</chapter>

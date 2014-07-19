@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Built-By: zhangyanbo
+Build-Jdk: 1.6.0_43
+Class-Path: logmonitor-pipeline-0.3-SNAPSHOT.jar rumba-commons-mini-1.
+ 9.jar javassist-3.6.0.GA.jar pinyin4j-2.5.0.jar commons-lang3-3.1.jar
+  ddps-schedule-1.4.jar slf4j-api-1.6.4.jar spring-core-3.1.2.RELEASE.
+ jar spring-asm-3.1.2.RELEASE.jar commons-logging-1.1.1.jar spring-con
+ text-3.1.2.RELEASE.jar spring-aop-3.1.2.RELEASE.jar aopalliance-1.0.j
+ ar spring-expression-3.1.2.RELEASE.jar spring-beans-3.1.2.RELEASE.jar
+Specification-Title: LogMonitor Pipeline Spring Integration
+Specification-Version: 0.3-SNAPSHOT
+Specification-Vendor: Shanghai Heading Information Engineering Co., Ltd
+Implementation-Title: LogMonitor Pipeline Spring Integration
+Implementation-Version: 0.3-SNAPSHOT
+Implementation-Vendor-Id: com.hd123.devops
+Implementation-Vendor: Shanghai Heading Information Engineering Co., Ltd
+Created-By: Maven Integration for Eclipse
+

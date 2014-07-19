@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<part xmlns="http://docbook.org/ns/docbook" 
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title xml:id="part-overview">概述</title>
+    
+    <chapter>
+        <title>简介</title>
+        <sect1>
+            <title>Log Monitor是什么？</title>
+            <para>Log Monitor是一个文件日志收集和分析系统。</para>
+            <para>常见的日志归集模式有两种：</para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>通过应用程序实时异步发送日志给日志服务。这需要应用程序增加记录日志或者通过AOP等技术进行动态配置。</para>
+                    </listitem>
+                    <listitem>
+                        <para>定时访问文件日志并同步给日志服务器。</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>两种方式各有利弊，应该配合使用，Log Monitor实现的是第二种模式。</para>
+        </sect1> 
+
+        <sect1>
+            <title>Log Monitor有什么用？</title>
+            <para>Log Monitor对应用是完全非侵入的，它能做到：</para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>抽取应用服务器产生的文本格式的文件日志，按规则提取信息（例如RROR等）。有了这个就不用登录每一台服务器去看错误日志查问题了。</para>
+                    </listitem>
+                    <listitem>
+                        <para>抽取应用程序的性能打点日志、访问日志等，集中到日志服务器并切分、统计，统计结果可以存储到文件、数据库或发给监控平台。从这个日志可以分析程序的性能等信息。</para>
+                    </listitem>
+                    <listitem>
+                        <para>......</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </sect1>
+    </chapter>
+    
+    <xi:include href="ov-releasenotes.xml"/>
+    <xi:include href="ov-architecture.xml"/>
+</part>

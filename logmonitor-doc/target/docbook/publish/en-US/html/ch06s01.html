@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">6.1. 控制流</title><link rel="stylesheet" href="css/jbossorg.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Log Monitor用户手册"/><link rel="up" href="ch06.html" title="Chapter 6. LogHandler列表"/><link rel="prev" href="ch06.html" title="Chapter 6. LogHandler列表"/><link rel="next" href="ch06s02.html" title="6.2. 日志切分"/></head><body><p id="title"><a href="http://www.jboss.org" class="site_href"><strong>JBoss.org</strong></a><a href="http://docs.jboss.org/" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch06.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="ch06s02.html"><strong>Next</strong></a></li></ul><div class="sect1" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="d4e185"/>6.1. 控制流</h2></div></div></div>
+        
+        <p>控制流是处理控制流程的特殊LogHandler，可以实现条件、并发等类似于网关功能。</p>
+        <div class="sect2" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="d4e188"/>6.1.1. Condition</h3></div></div></div>
+            
+            <p>用途：判断Log是否符合某种条件，如果是则继续，否则忽略不处理。</p>
+            <p>类名：com.hd123.devops.logmonitor.pipeline.handler.Condition</p>
+            <p>输入（1）：TokenLog</p>
+            <p>输出（0..1）：TokenLog</p>
+        </div>
+        <div class="sect2" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="d4e194"/>6.1.2. Forker</h3></div></div></div>
+            
+            <p>用途：并行处理，可以同时启动多个后续的Pipeline流水线。Forker常用于连接多个Pipeline。</p>
+            <p>类名：com.hd123.devops.logmonitor.pipeline.gateway.Forker</p>
+            <p>输入（1）：任意Log</p>
+            <p>输出：无</p>
+        </div>
+    </div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch06.html"><strong>Prev</strong>Chapter 6. LogHandler列表</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="ch06s02.html"><strong>Next</strong>6.2. 日志切分</a></li></ul></body></html>

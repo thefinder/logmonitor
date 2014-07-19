@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Built-By: zhangyanbo
+Build-Jdk: 1.6.0_43
+Class-Path: rumba-commons-mini-1.9.jar javassist-3.6.0.GA.jar pinyin4j
+ -2.5.0.jar commons-lang3-3.1.jar ddps-schedule-1.4.jar slf4j-api-1.6.
+ 4.jar
+Specification-Title: Log Monitor Pipeline
+Specification-Version: 0.3-SNAPSHOT
+Specification-Vendor: Shanghai Heading Information Engineering Co., Ltd
+Implementation-Title: Log Monitor Pipeline
+Implementation-Version: 0.3-SNAPSHOT
+Implementation-Vendor-Id: com.hd123.devops
+Implementation-Vendor: Shanghai Heading Information Engineering Co., Ltd
+Created-By: Maven Integration for Eclipse
+

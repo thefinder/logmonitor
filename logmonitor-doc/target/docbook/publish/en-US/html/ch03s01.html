@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">3.1. 概述</title><link rel="stylesheet" href="css/jbossorg.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Log Monitor用户手册"/><link rel="up" href="ch03.html" title="Chapter 3. 软件架构"/><link rel="prev" href="ch03.html" title="Chapter 3. 软件架构"/><link rel="next" href="pt02.html" title="Part II. 使用手册"/></head><body><p id="title"><a href="http://www.jboss.org" class="site_href"><strong>JBoss.org</strong></a><a href="http://docs.jboss.org/" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch03.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="pt02.html"><strong>Next</strong></a></li></ul><div class="sect1" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="d4e62"/>3.1. 概述</h2></div></div></div>
+        
+        <p>Log Monitor的整体架构如下；</p>
+        <p><span class="inlinemediaobject"><img src="images/architecture.png"/></span></p>
+        
+        <div class="sect2" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="d4e69"/>3.1.1. 客户机</h3></div></div></div>
+            
+            <p>客户机上部署Agent，以Windows Service方式运行，通过多个线程监视日志文件，并增量将日志内容发送给Server。</p>
+            <p>可以对日志内容设置过滤，典型的按照正则表达式方式对日志行文本进行过滤，并且对日志文件进行分割，因为像Java堆栈等是换行的。</p>
+            <p>客户机会通过心跳线程向服务器发送ping信息，服务器可以根据此来感知客户机的运行情况。</p>
+            <p>客户机和服务器之间通过高效的Netty（TCP）协议进行传输。</p>
+        </div>
+        
+        <div class="sect2" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="d4e75"/>3.1.2. 日志服务器</h3></div></div></div>
+            
+            <p>Server部署在多个日志服务器上，以Windows Service方式运行。一个Server可以处理Agent发送的请求。</p>
+            <p>Server通过流水线（Pipeline）对日志进行分析处理，每个处理器（Handler）完成一项任务。处理器是完全可定制的。</p>
+            <p>典型的日志处理经过切分、过滤、存储、统计等一系列过程。</p>
+            <div class="sect3" lang="en-US"><div class="titlepage"><div><div><h4 class="title"><a id="d4e80"/>3.1.2.1. 切分</h4></div></div></div>
+                
+                <p>将原始的日志文本（RawLog）按照特定的分割符切分，比如Log4j格式或者HTTP Access log格式等。</p>
+                <p>有些信息需要通过二次切分获得，例如性能日志，将切分后的日志（TokenLog）进行二次切分得到性能日志格式（PerfLog）。</p>
+            </div>
+            
+            <div class="sect3" lang="en-US"><div class="titlepage"><div><div><h4 class="title"><a id="d4e84"/>3.1.2.2. 统计</h4></div></div></div>
+                
+                <p>对切分的日志可以进行统计，例如对基于方法的性能日志可以进行汇总得到每个方法的调用次数、最大耗时、平均耗时等。</p>
+            </div>
+            
+            <div class="sect3" lang="en-US"><div class="titlepage"><div><div><h4 class="title"><a id="d4e87"/>3.1.2.3. 存储</h4></div></div></div>
+                
+                <p>处理的日志可以存储到文本文件，或者数据库中以做进一步分析。</p>
+            </div>
+            
+            <div class="sect3" lang="en-US"><div class="titlepage"><div><div><h4 class="title"><a id="d4e90"/>3.1.2.4. 监控</h4></div></div></div>
+                
+                <p>对于特定的日志可以发送监控平台，进行统一监控和报警处理。</p>
+            </div>
+        </div>
+    </div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch03.html"><strong>Prev</strong>Chapter 3. 软件架构</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="pt02.html"><strong>Next</strong>Part II. 使用手册</a></li></ul></body></html>

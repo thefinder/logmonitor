@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+	<title xml:id="chp-getting-started">从这里开始</title>
+	<para>本章介绍如何安装日志监控代理。</para>
+	<sect1 xml:id="sec-download">
+		<title >下载</title>
+		<para>
+			您可以通过进入“
+			<link xlink:href="http://wiki.app.hd123.cn/wiki/display/devops">运维体系官方站点</link>
+			”，点击页面左上角的“下载”，进入下载页面，找到Log Monitor的最新版本并下载。也可以直接点击如下链接直接进入：
+			<link xlink:href="http://wiki.app.hd123.cn/wiki/pages/viewpage.action?pageId=165289511">
+				http://wiki.app.hd123.cn/wiki/pages/viewpage.action?pageId=165289511
+			</link>
+			。
+		</para>
+	</sect1>
+	
+	<sect1 xml:id="sec-install-server">
+		<title>安装服务器</title>
+		<para>按如下步骤完成配置：</para>
+		<para>
+			<orderedlist>
+				<listitem>
+					<para>将下载的logmonitor-server.zip解压到指定目录，例如：d:/server/logmonitor-server。</para>
+				</listitem>
+				<listitem>
+					<para>执行bin\InstallApp.bat安装为Windows服务，名为“LogMonitor Server”。</para>
+				</listitem>
+				<listitem>
+					<para>打开conf/logmonitor-server.properties，做如下配置：</para>
+					<para><programlisting><![CDATA[
+# 服务器端口
+logmonitor.server.port=15880
+]]></programlisting></para>
+				</listitem>
+			</orderedlist>
+		</para>
+		<para>这里15880是默认端口，可以修改。</para>
+	</sect1>
+	
+	<sect1 xml:id="sec-install-agent">
+		<title>安装客户机代理</title>
+		<para>按如下步骤完成配置：</para>
+		<para>
+			<orderedlist>
+				<listitem>
+					<para>将下载的logmonitor-agent.zip解压到指定目录，例如：d:/server/logmonitor-agent。</para>
+				</listitem>
+				<listitem>
+					<para>执行bin\InstallApp.bat安装为Windows服务，名为“LogMonitor Agent”。</para>
+				</listitem>
+				<listitem>
+					<para>打开conf/logmonitor.properties，做如下配置：</para>
+					<para><programlisting><![CDATA[
+# 日志服务器地址
+logmonitor.server=192.168.1.2:15880
+# 本机IP
+logmonitor.host=192.168.1.10
+# 日志扫描线程数
+logmonitor.threadcount=1
+# 日志扫描时间间隔（单位：秒）
+logmonitor.scanseconds=30
+# 心跳时间间隔（单位：秒）
+logmonitor.heartbeatseconds=30
+]]></programlisting></para>
+				</listitem>
+			</orderedlist>
+		</para>
+		<para>这里logmonitor.server需要配成前面配置的服务器地址，host是客户机的IP。</para>
+	</sect1>
+</chapter>

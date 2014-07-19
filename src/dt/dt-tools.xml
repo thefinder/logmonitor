@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="[ logmonitor ] Development Tool"
+         basedir="../.."
+         xmlns:mvn="antlib:org.apache.maven.artifact.ant">
+
+  <mvn:pom id="pom" file="pom.xml" />
+  <taskdef resource="net/sf/antcontrib/antlib.xml">
+    <classpath>
+      <pathelement location="src/dt/lib/ant-contrib.jar"/>
+    </classpath>    
+  </taskdef>
+
+  <import file="installrepo.xml"/>
+  
+  <property environment="env" />
+
+  <!-- ================================= 
+    target: +install-repo
+    | 部署本地JAR到Maven库中
+  ================================= -->
+  <target name="+install-repo">
+    <antcall target="-install-local-jars" />
+  </target>
+   
+</project>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">6.3. 性能相关</title><link rel="stylesheet" href="css/jbossorg.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Log Monitor用户手册"/><link rel="up" href="ch06.html" title="Chapter 6. LogHandler列表"/><link rel="prev" href="ch06s02.html" title="6.2. 日志切分"/></head><body><p id="title"><a href="http://www.jboss.org" class="site_href"><strong>JBoss.org</strong></a><a href="http://docs.jboss.org/" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch06s02.html"><strong>Prev</strong></a></li><li class="next"/></ul><div class="sect1" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="d4e226"/>6.3. 性能相关</h2></div></div></div>
+        
+        <div class="sect2" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="d4e228"/>6.3.1. MethodPerfTokenizer</h3></div></div></div>
+            
+            <p>用途：将基于AOP性能打点日志的内容进行切分。</p>
+            <p>类名：com.hd123.devops.logmonitor.pipeline.handler.MethodPerfTokenizer</p>
+            <p>输入（1）：TokenLog</p>
+            <p>输出（0..n）：PerfLog</p>
+        </div>
+        <div class="sect2" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="d4e234"/>6.3.2. MethodPerfCounter</h3></div></div></div>
+            
+            <p>用途：将符合Log4j格式的日志条目进行切分。</p>
+            <p>类名：com.hd123.devops.logmonitor.pipeline.handler.MethodPerfCounter</p>
+            <p>输入（1）：PerfLog</p>
+            <p>输出（1）：PerfLog</p>
+        </div>
+        <div class="sect2" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="d4e240"/>6.3.3. AccessLogPerfCounter</h3></div></div></div>
+            
+            <p>用途：对于HTTP Access Log进行性能统计（要求Access Log必须包含性能记录）。</p>
+            <p>类名：com.hd123.devops.logmonitor.pipeline.handler.AccessLogPerfCounter</p>
+            <p>输入（1）：TokenLog</p>
+            <p>输出（0..1）：PerfLog</p>
+        </div>
+    </div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch06s02.html"><strong>Prev</strong>6.2. 日志切分</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li></ul></body></html>

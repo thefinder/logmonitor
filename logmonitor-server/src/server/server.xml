@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 版权所有(C)，2013，上海海鼎信息工程股份有限公司，保留所有权利。 -->
+<assembly
+  xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 
+    http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+  <formats>
+    <format>zip</format>
+  </formats>
+
+  <includeSiteDirectory>false</includeSiteDirectory>
+  <files>
+    <file>
+      <source>target/logmonitor-server-${project.version}-jar-with-dependencies.jar</source>
+      <outputDirectory>lib</outputDirectory>
+      <destName>logmonitor-server-jar-with-dependencies.jar</destName>
+    </file>
+  </files>
+  <fileSets>
+    <fileSet>
+      <directory>src/server/bin</directory>
+      <outputDirectory>bin</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>src/server/conf</directory>
+      <outputDirectory>conf</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>src/server/lib</directory>
+      <outputDirectory>lib</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>src/server/logs</directory>
+      <outputDirectory>logs</outputDirectory>
+    </fileSet>
+    <fileSet>
+      <directory>src/server/data</directory>
+      <outputDirectory>data</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>

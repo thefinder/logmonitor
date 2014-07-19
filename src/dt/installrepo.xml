@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="[ logmonitor ] Install Maven Repository"
+         basedir="../.."
+         xmlns:mvn="antlib:org.apache.maven.artifact.ant">
+
+  <!-- ================================= 
+    target: -install-local-jars
+    | 部署本地JAR到Maven库中
+  ================================= -->
+  <target name="-install-local-jars">
+    <!-- H5公共 -->
+    <m2-install-artifact file="src/dt/repo/ostermillerutils_1_6_1.jar" 
+      groupId="com.hd123.devops.logmonitor.jar"
+      artifactId="ostermillerutils" version="1.6.1"
+      packaging="jar"/>
+    <m2-install-artifact file="src/dt/repo/zapcat-1.2.jar" 
+      groupId="com.hd123.devops.logmonitor.jar"
+      artifactId="zapcat" version="1.2"
+      packaging="jar"/>
+  </target>
+  
+  <!-- - - - - - - - - - - - - - - - - - 
+    marcodef: m2-install-artifact
+    | 将指定的制品安装到本次Maven仓库中，制品必须放在src/repo目录。
+  - - - - - - - - - - - - - - - - - -->
+  <macrodef name="m2-install-artifact">
+		<attribute name="file" />
+    <attribute name="groupId" />
+    <attribute name="artifactId" />
+    <attribute name="version" />
+    <attribute name="packaging" />
+		<sequential>
+	    <mvn:mvn pom="pom.xml" mavenHome="${env.M2_HOME}" fork="true">
+	      <arg value="org.apache.maven.plugins:maven-install-plugin:install-file" />
+	      <arg value="-Dfile=@{file}"/>
+	      <arg value="-DgroupId=@{groupId}"/>
+	      <arg value="-DartifactId=@{artifactId}"/>
+		    <arg value="-Dversion=@{version}"/>
+		    <arg value="-Dpackaging=@{packaging}"/>
+	    </mvn:mvn>
+		</sequential>
+	</macrodef>  
+  
+</project>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <delete>
+    <fileset dir="D:\workspace\dev\logmonitor-parent\logmonitor-doc/target/docbook/publish/en-US/html">
+      <include name="*.xml"/>
+      <include name="*.xpr"/>
+    </fileset>
+  </delete>
+  <copy todir="D:\workspace\dev\logmonitor-parent\logmonitor-doc/target/site/doc/usermanual">
+    <fileset dir="D:\workspace\dev\logmonitor-parent\logmonitor-doc/target/docbook/publish/en-US/html"/>
+  </copy>
+</target>
+</project>

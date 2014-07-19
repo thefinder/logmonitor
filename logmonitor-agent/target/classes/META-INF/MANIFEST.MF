@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Built-By: zhangyanbo
+Build-Jdk: 1.6.0_43
+Class-Path: ostermillerutils-1.6.1.jar zapcat-1.2.jar netty-3.2.8.Fina
+ l.jar slf4j-api-1.6.4.jar slf4j-simple-1.6.4.jar log4j-1.2.16.jar
+Specification-Title: Log Monitor Agent
+Specification-Version: 0.3-SNAPSHOT
+Specification-Vendor: Shanghai Heading Information Engineering Co., Ltd
+Implementation-Title: Log Monitor Agent
+Implementation-Version: 0.3-SNAPSHOT
+Implementation-Vendor-Id: com.hd123.devops
+Implementation-Vendor: Shanghai Heading Information Engineering Co., Ltd
+Main-Class: com.hd123.devops.logmonitor.agent.Main
+Created-By: Maven Integration for Eclipse
+

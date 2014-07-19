@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">4.2. 安装服务器</title><link rel="stylesheet" href="css/jbossorg.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Log Monitor用户手册"/><link rel="up" href="ch04.html" title="Chapter 4. 从这里开始"/><link rel="prev" href="sec-download.html" title="4.1. 下载"/><link rel="next" href="sec-install-agent.html" title="4.3. 安装客户机代理"/></head><body><p id="title"><a href="http://www.jboss.org" class="site_href"><strong>JBoss.org</strong></a><a href="http://docs.jboss.org/" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="sec-download.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="sec-install-agent.html"><strong>Next</strong></a></li></ul><div class="sect1" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="sec-install-server"/>4.2. 安装服务器</h2></div></div></div>
+		
+		<p>按如下步骤完成配置：</p>
+		<p>
+			</p><div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="orderedlist"><ol><li>
+					<p>将下载的logmonitor-server.zip解压到指定目录，例如：d:/server/logmonitor-server。</p>
+				</li><li>
+					<p>执行bin\InstallApp.bat安装为Windows服务，名为“LogMonitor Server”。</p>
+				</li><li>
+					<p>打开conf/logmonitor-server.properties，做如下配置：</p>
+					<pre xmlns="" class="">
+# 服务器端口
+logmonitor.server.port=15880
+</pre>
+				</li></ol></div><p>
+		</p>
+		<p>这里15880是默认端口，可以修改。</p>
+	</div><ul class="docnav"><li class="previous"><a accesskey="p" href="sec-download.html"><strong>Prev</strong>4.1. 下载</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="sec-install-agent.html"><strong>Next</strong>4.3. 安装客户机代理</a></li></ul></body></html>

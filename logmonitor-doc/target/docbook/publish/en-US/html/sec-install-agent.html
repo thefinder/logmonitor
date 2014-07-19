@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">4.3. 安装客户机代理</title><link rel="stylesheet" href="css/jbossorg.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Log Monitor用户手册"/><link rel="up" href="ch04.html" title="Chapter 4. 从这里开始"/><link rel="prev" href="sec-install-server.html" title="4.2. 安装服务器"/><link rel="next" href="ch05.html" title="Chapter 5. 配置"/></head><body><p id="title"><a href="http://www.jboss.org" class="site_href"><strong>JBoss.org</strong></a><a href="http://docs.jboss.org/" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="sec-install-server.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="ch05.html"><strong>Next</strong></a></li></ul><div class="sect1" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="sec-install-agent"/>4.3. 安装客户机代理</h2></div></div></div>
+		
+		<p>按如下步骤完成配置：</p>
+		<p>
+			</p><div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="orderedlist"><ol><li>
+					<p>将下载的logmonitor-agent.zip解压到指定目录，例如：d:/server/logmonitor-agent。</p>
+				</li><li>
+					<p>执行bin\InstallApp.bat安装为Windows服务，名为“LogMonitor Agent”。</p>
+				</li><li>
+					<p>打开conf/logmonitor.properties，做如下配置：</p>
+					<pre xmlns="" class="">
+# 日志服务器地址
+logmonitor.server=192.168.1.2:15880
+# 本机IP
+logmonitor.host=192.168.1.10
+# 日志扫描线程数
+logmonitor.threadcount=1
+# 日志扫描时间间隔（单位：秒）
+logmonitor.scanseconds=30
+# 心跳时间间隔（单位：秒）
+logmonitor.heartbeatseconds=30
+</pre>
+				</li></ol></div><p>
+		</p>
+		<p>这里logmonitor.server需要配成前面配置的服务器地址，host是客户机的IP。</p>
+	</div><ul class="docnav"><li class="previous"><a accesskey="p" href="sec-install-server.html"><strong>Prev</strong>4.2. 安装服务器</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="ch05.html"><strong>Next</strong>Chapter 5. 配置</a></li></ul></body></html>

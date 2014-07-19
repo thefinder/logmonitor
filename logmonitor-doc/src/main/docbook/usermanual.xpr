@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="12.0">
+    <meta>
+        <filters directoryPatterns="" filePatterns=""
+            positiveFilePatterns="" showHiddenFiles="false"/>
+        <options/>
+    </meta>
+    <projectTree name="usermanual.xpr">
+        <folder path="images/"/>
+        <file name="devguide.xml"/>
+        <file name="dg-loghandler.xml"/>
+        <file name="main.xml"/>
+        <file name="ov-architecture.xml"/>
+        <file name="overview.xml"/>
+        <file name="ov-releasenotes.xml"/>
+        <file name="ug-config.xml"/>
+        <file name="ug-getting-started.xml"/>
+        <file name="userguide.xml"/>
+    </projectTree>
+</project>

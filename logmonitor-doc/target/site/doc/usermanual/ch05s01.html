@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">5.1. 监视日志文件</title><link rel="stylesheet" href="css/jbossorg.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Log Monitor用户手册"/><link rel="up" href="ch05.html" title="Chapter 5. 配置"/><link rel="prev" href="ch05.html" title="Chapter 5. 配置"/><link rel="next" href="ch05s02.html" title="5.2. 配置日志处理流水线"/></head><body><p id="title"><a href="http://www.jboss.org" class="site_href"><strong>JBoss.org</strong></a><a href="http://docs.jboss.org/" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="ch05s02.html"><strong>Next</strong></a></li></ul><div class="sect1" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="d4e134"/>5.1. 监视日志文件</h2></div></div></div>
+		
+		<p>LogMonitor可以同时监控多个应用日志文件，以SOMS的应用日志为例配置：</p>
+		<p>
+			</p><pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class=""># 配置监视的日志文件
+logmonitor.collector.SOMS.file=D:/JAVA/apache-tomcat-SOMS/logs/soms-server.log
+logmonitor.collector.SOMS.logcontext=soms-server/192.168.8.12
+logmonitor.collector.SOMS.filter=com.hd123.devops.logmonitor.agent.filter.PatternFilter
+logmonitor.collector.SOMS.filter.pattern=.*\\s+(WARN|ERROR)\\s+.*
+logmonitor.collector.SOMS.newlinepattern=^[0-9]+4\\-.*
+</pre><p>
+		</p>
+		<p>这里几个参数的含义是：</p>
+		<p>
+			</p><div class="itemizedlist"><ul><li>
+					<p>file：需要监控的日志文件名。文件名支持日期占位，因为有些日志文件名是按日期滚动的，典型的例子：</p>
+					<p>
+						</p><div class="itemizedlist"><ul><li>
+								<p>soms-server.log：无占位。</p>
+							</li><li>
+								<p>localhost_access_${date}.log：有${date}占位，匹配localhost_access_2014-06-01.log这样的文件名。</p>
+							</li><li>
+								<p>my_${date:yyyyMMdd}.log：有${date:yyyyMMdd}占位，匹配my_20140601.log这样的文件名。</p>
+							</li></ul></div><p>
+					</p>
+				</li><li>
+					<p>filter：过滤器，当日志文件匹配指定的格式时发送。目前支持两种过滤器：WordFilter（包含某个词）、PatternFilter（按正则表达式匹配）。</p>
+					<p>按词过滤这样配置：</p>
+					<p>
+						</p><pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="">
+logmonitor.collector.SOMS.filter=com.hd123.devops.logmonitor.agent.filter.WordFilter
+logmonitor.collector.SOMS.filter.word= ERROR 
+</pre><p>
+					</p>
+					<p>注意这里的word后面的值是包含左右空格的。</p>
+					<p>按正则表达式过滤这样配置：</p>
+					<p>
+						</p><pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="">
+logmonitor.collector.SOMS.filter=com.hd123.devops.logmonitor.agent.filter.PatternFilter
+logmonitor.collector.SOMS.filter.pattern=.*\\s+(WARN|ERROR)\\s+.*
+</pre><p>
+					</p>
+					<p>正则表达式的写法请查询有关文档。</p>
+				</li><li>
+					<p>logcontext：日志上下文，用于日志归集时聚合用，用路径表达，例如a/b/c。</p>
+				</li><li>
+					<p>newlinepattern：切割日志时的分割表示，有些日志是包含多行的，例如ERROR日志，会产生Java堆栈，但日志归集时需要将堆栈信息一起归集，所以需要标识新日志行，例如tomcat、jboss等的应用日志都是以日期为开始的。</p>
+				</li></ul></div><p>
+		</p>
+	</div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05.html"><strong>Prev</strong>Chapter 5. 配置</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="ch05s02.html"><strong>Next</strong>5.2. 配置日志处理流水线</a></li></ul></body></html>

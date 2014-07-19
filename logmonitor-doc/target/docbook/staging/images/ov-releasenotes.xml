@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title xml:id="chp-releasenotes">发布说明</title>
+
+    <sect1>
+        <title>0.2</title>
+        <sect2>
+            <title>新特性和改进</title>
+            <para>对软件架构进行重构，完整的基于日志的监控系统包括日志归集、日志分析和监控报警等几个部分，本工具主要定位于日志归集、处理等，并使得系统具备可扩展能力。</para>
+            <para>本工具发布的制品包含两部分：</para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>logmonitor-agent：安装在客户机上的日志监控代理，负责按照一定的规则抽取文件日志并发送给日志服务器。</para>
+                        <para>可以灵活的配置一定的规则来抽取文件日志，比如抽取ERROR日志、性能打点日志或者HTTP请求日志等。</para>
+                    </listitem>
+                    <listitem>
+                        <para>logmonitor-server：安装在服务器上的日志监控服务端，负责归集并处理代理发送的日志。</para>
+                        <para>日志处理支持开放的流水线结构，可定制和扩展。</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </sect2>
+    </sect1>
+    <sect1>
+        <title>0.1</title>
+        <sect2>
+            <title>新特性和改进</title>
+            <para> 初始版本，提供了日志监控代理功能。</para>
+        </sect2>
+    </sect1>
+</chapter>

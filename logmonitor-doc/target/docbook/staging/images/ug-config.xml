@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+	<title xml:id="chp-config">配置</title>
+	<para>本章将介绍如何配置日志监控代理。</para>
+	<sect1>
+		<title>监视日志文件</title>
+		<para>LogMonitor可以同时监控多个应用日志文件，以SOMS的应用日志为例配置：</para>
+		<para>
+			<programlisting><![CDATA[# 配置监视的日志文件
+logmonitor.collector.SOMS.file=D:/JAVA/apache-tomcat-SOMS/logs/soms-server.log
+logmonitor.collector.SOMS.logcontext=soms-server/192.168.8.12
+logmonitor.collector.SOMS.filter=com.hd123.devops.logmonitor.agent.filter.PatternFilter
+logmonitor.collector.SOMS.filter.pattern=.*\\s+(WARN|ERROR)\\s+.*
+logmonitor.collector.SOMS.newlinepattern=^[0-9]+4\\-.*
+]]></programlisting>
+		</para>
+		<para>这里几个参数的含义是：</para>
+		<para>
+			<itemizedlist>
+				<listitem>
+					<para>file：需要监控的日志文件名。文件名支持日期占位，因为有些日志文件名是按日期滚动的，典型的例子：</para>
+					<para>
+						<itemizedlist>
+							<listitem>
+								<para>soms-server.log：无占位。</para>
+							</listitem>
+							<listitem>
+								<para>localhost_access_${date}.log：有${date}占位，匹配localhost_access_2014-06-01.log这样的文件名。</para>
+							</listitem>
+							<listitem>
+								<para>my_${date:yyyyMMdd}.log：有${date:yyyyMMdd}占位，匹配my_20140601.log这样的文件名。</para>
+							</listitem>
+						</itemizedlist>
+					</para>
+				</listitem>
+				<listitem>
+					<para>filter：过滤器，当日志文件匹配指定的格式时发送。目前支持两种过滤器：WordFilter（包含某个词）、PatternFilter（按正则表达式匹配）。</para>
+					<para>按词过滤这样配置：</para>
+					<para>
+						<programlisting><![CDATA[
+logmonitor.collector.SOMS.filter=com.hd123.devops.logmonitor.agent.filter.WordFilter
+logmonitor.collector.SOMS.filter.word= ERROR 
+]]></programlisting>
+					</para>
+					<para>注意这里的word后面的值是包含左右空格的。</para>
+					<para>按正则表达式过滤这样配置：</para>
+					<para>
+						<programlisting><![CDATA[
+logmonitor.collector.SOMS.filter=com.hd123.devops.logmonitor.agent.filter.PatternFilter
+logmonitor.collector.SOMS.filter.pattern=.*\\s+(WARN|ERROR)\\s+.*
+]]></programlisting>
+					</para>
+					<para>正则表达式的写法请查询有关文档。</para>
+				</listitem>
+				<listitem>
+					<para>logcontext：日志上下文，用于日志归集时聚合用，用路径表达，例如a/b/c。</para>
+				</listitem>
+				<listitem>
+					<para>newlinepattern：切割日志时的分割表示，有些日志是包含多行的，例如ERROR日志，会产生Java堆栈，但日志归集时需要将堆栈信息一起归集，所以需要标识新日志行，例如tomcat、jboss等的应用日志都是以日期为开始的。</para>
+				</listitem>
+			</itemizedlist>
+		</para>
+	</sect1>
+	
+	<sect1>
+		<title>配置日志处理流水线</title>
+		<para>默认的流水线是在server/data目录产生文件日志，文件名即collector的logcontext属性。</para>
+		<para>如果需要定制流水线，可以配置server/conf/logmonitor-pipeline.xml文件，目前已经预定的处理器（LogHandler）可参见开发手册中的日志处理器（LogHandler）列表。</para>
+	</sect1>
+	
+	<sect1>
+		<title>一些例子</title>
+		<para>下面就典型场景举一些配置例子：</para>
+		<sect2>
+			<title>例1：提取server.log中警告或错误日志</title>
+			<para>
+				<programlisting><![CDATA[# 配置监视的日志文件
+logmonitor.collector.SOMS.file=D:/JAVA/apache-tomcat/logs/server.log
+logmonitor.collector.SOMS.logcontext=mylog/192.168.1.3
+logmonitor.collector.SOMS.filter=com.hd123.devops.logmonitor.agent.filter.PatternFilter
+logmonitor.collector.SOMS.filter.pattern=.*\\s+(WARN|ERROR)\\s+.*
+logmonitor.collector.SOMS.newlinepattern=^[0-9]+4\\-.*
+]]></programlisting>
+			</para>
+		</sect2>
+		
+		<sect2>
+			<title>例2：提取accesslog日志中耗时1s以上的请求</title>
+			<para>
+				<programlisting><![CDATA[# 配置监视的日志文件
+logmonitor.collector.SOMS.file=D:/JAVA/apache-tomcat/logs/localhost_access_${date}.log
+logmonitor.collector.SOMS.logcontext=mylog/192.168.1.3
+logmonitor.collector.SOMS.filter=com.hd123.devops.logmonitor.agent.filter.PatternFilter
+logmonitor.collector.SOMS.filter.pattern=.*HTTP/1.1\\\"\\s+[0-9][0-9][0-9]\\s+\\d{4,}.*
+logmonitor.collector.SOMS.newlinepattern=.*
+]]></programlisting>
+			</para>
+		</sect2>
+	</sect1>
+</chapter>

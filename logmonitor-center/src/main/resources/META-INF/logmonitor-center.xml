@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+  xmlns:aop="http://www.springframework.org/schema/aop" 
+  xmlns:security="http://www.springframework.org/schema/security"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:tx="http://www.springframework.org/schema/tx"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/security 
+http://www.springframework.org/schema/security/spring-security.xsd
+http://cxf.apache.org/jaxrs
+http://cxf.apache.org/schemas/jaxrs.xsd">
+
+  <context:annotation-config />
+  <context:component-scan base-package="com.hd123.devops.logmonitor.center"/>
+ 
+  <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="ignoreUnresolvablePlaceholders" value="true" />  
+    <property name="ignoreResourceNotFound" value="true"/>
+    <property name="location">
+      <value>classpath:logmonitor-center.properties</value>
+    </property>
+  </bean>
+
+  <!-- 记录文件日志 -->
+  <bean id="filelogger" class="com.hd123.devops.logmonitor.pipeline.handler.updater.FileLogger">
+    <property name="outputDir" value="../data" />
+  </bean>
+
+  <bean id="pipeline" class="com.hd123.devops.logmonitor.pipeline.spring.LogPipelineFactoryBean">
+    <property name="handlers">
+      <list>
+        <bean class="com.hd123.devops.logmonitor.pipeline.spring.NamedLogHandler">
+          <constructor-arg type="java.lang.String" value="filelogger"/>
+          <constructor-arg ref="filelogger"/>
+        </bean>
+      </list>
+    </property>
+  </bean>
+</beans>

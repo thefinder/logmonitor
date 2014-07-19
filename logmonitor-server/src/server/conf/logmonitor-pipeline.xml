@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+classpath:/org/springframework/beans/factory/xml/spring-beans-3.1.xsd
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <!-- 记录文件日志 -->
+  <bean id="filelogger" class="com.hd123.devops.logmonitor.pipeline.handler.updater.FileLogger">
+    <property name="outputDir" value="../data" />
+  </bean>
+
+  <bean id="pipeline" class="com.hd123.devops.logmonitor.pipeline.spring.LogPipelineFactoryBean">
+    <property name="handlers">
+      <list>
+        <bean class="com.hd123.devops.logmonitor.pipeline.spring.NamedLogHandler">
+          <constructor-arg type="java.lang.String" value="filelogger"/>
+          <constructor-arg ref="filelogger"/>
+        </bean>
+      </list>
+    </property>
+  </bean>
+</beans>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://www.oasis-open.org/docbook/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title xml:id="chp-loghandler">LogHandler列表</title>
+    
+    <sect1>
+        <title>控制流</title>
+        <para>控制流是处理控制流程的特殊LogHandler，可以实现条件、并发等类似于网关功能。</para>
+        <sect2>
+            <title>Condition</title>
+            <para>用途：判断Log是否符合某种条件，如果是则继续，否则忽略不处理。</para>
+            <para>类名：com.hd123.devops.logmonitor.pipeline.handler.Condition</para>
+            <para>输入（1）：TokenLog</para>
+            <para>输出（0..1）：TokenLog</para>
+        </sect2>
+        <sect2>
+            <title>Forker</title>
+            <para>用途：并行处理，可以同时启动多个后续的Pipeline流水线。Forker常用于连接多个Pipeline。</para>
+            <para>类名：com.hd123.devops.logmonitor.pipeline.gateway.Forker</para>
+            <para>输入（1）：任意Log</para>
+            <para>输出：无</para>
+        </sect2>
+    </sect1>
+    
+    <sect1>
+        <title>日志切分</title>
+        <sect2>
+            <title>FileCutter</title>
+            <para>用途：将文本文件切分成日志条目。</para>
+            <para>类名：com.hd123.devops.logmonitor.pipeline.handler.FileCutter</para>
+            <para>输入（1）：文件名</para>
+            <para>输出（0..n）：RawLog</para>
+        </sect2>
+        <sect2>
+            <title>Log4jTokenizer</title>
+            <para>用途：将符合Log4j格式的日志条目进行切分。</para>
+            <para>类名：com.hd123.devops.logmonitor.pipeline.handler.Log4jTokenizer</para>
+            <para>输入（1）：RawLog</para>
+            <para>输出（0..1）：TokenLog</para>
+        </sect2>
+        <sect2>
+            <title>CharTokenizer</title>
+            <para>用途：将简单的以字符分割的日志条目进行切分。</para>
+            <para>类名：com.hd123.devops.logmonitor.pipeline.handler.CharTokenizer</para>
+            <para>输入（1）：RawLog</para>
+            <para>输出（0..1）：TokenLog</para>
+        </sect2>
+        <sect2>
+            <title>AccessLogTokenizer</title>
+            <para>用途：将符合HTTP Access Log格式的日志条目进行切分。</para>
+            <para>类名：com.hd123.devops.logmonitor.pipeline.handler.AccessLogTokenizer</para>
+            <para>输入（1）：RawLog</para>
+            <para>输出（0..1）：TokenLog</para>
+        </sect2>
+    </sect1>
+
+    <sect1>
+        <title>性能相关</title>
+        <sect2>
+            <title>MethodPerfTokenizer</title>
+            <para>用途：将基于AOP性能打点日志的内容进行切分。</para>
+            <para>类名：com.hd123.devops.logmonitor.pipeline.handler.MethodPerfTokenizer</para>
+            <para>输入（1）：TokenLog</para>
+            <para>输出（0..n）：PerfLog</para>
+        </sect2>
+        <sect2>
+            <title>MethodPerfCounter</title>
+            <para>用途：将符合Log4j格式的日志条目进行切分。</para>
+            <para>类名：com.hd123.devops.logmonitor.pipeline.handler.MethodPerfCounter</para>
+            <para>输入（1）：PerfLog</para>
+            <para>输出（1）：PerfLog</para>
+        </sect2>
+        <sect2>
+            <title>AccessLogPerfCounter</title>
+            <para>用途：对于HTTP Access Log进行性能统计（要求Access Log必须包含性能记录）。</para>
+            <para>类名：com.hd123.devops.logmonitor.pipeline.handler.AccessLogPerfCounter</para>
+            <para>输入（1）：TokenLog</para>
+            <para>输出（0..1）：PerfLog</para>
+        </sect2>
+    </sect1>
+    
+</chapter>
